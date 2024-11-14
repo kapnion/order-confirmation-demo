@@ -101,6 +101,19 @@ export class OrderComparisonComponent implements OnInit {
            this.bestellung.mwst !== this.bestaetigung.mwst;
   }
 
+  countDifferences(): number {
+    let count = 0;
+    if (this.hatUnterschiedeDetails()) {
+      count++;
+    }
+    this.bestellung.artikel.forEach((item, index) => {
+      if (this.hatUnterschiede(index)) {
+        count++;
+      }
+    });
+    return count;
+  }
+
   toggleDetails(index: number) {
     this.expandedItems[index] = !this.expandedItems[index];
   }

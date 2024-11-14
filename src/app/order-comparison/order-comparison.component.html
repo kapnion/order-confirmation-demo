@@ -31,6 +31,9 @@
   <div class="content">
     <div class="main-content" [class.full-width]="!showDocumentView">
       <div class="vergleich-container">
+        <div *ngIf="hatUnterschiedeDetails()" class="warning-message">
+          <i class="fa fa-exclamation-triangle" style="color: red; margin-right: 10px;"></i> Es wurden {{countDifferences()}} Abweichungen gefunden!
+        </div>
         <table class="vergleich-tabelle">
           <thead>
             <tr>
@@ -94,6 +97,9 @@
               <i class="fa" [class.fa-chevron-right]="!expandedItems[i]" [class.fa-chevron-down]="expandedItems[i]"></i>
               <i *ngIf="!expandedItems[i] && hatUnterschiede(i)" class="fa fa-exclamation-circle" style="color: red; margin-right: 5px;"></i>
               <span>{{item.name}}</span>
+              <span *ngIf="!expandedItems[i] && hatUnterschiede(i)" class="warning-message-inline">
+                Abweichungen gefunden!
+              </span>
             </div>
             <div *ngIf="expandedItems[i]" class="artikel-details">
               <table class="artikel-tabelle">
@@ -110,25 +116,25 @@
                     <td><i class="fa fa-cube"></i></td>
                     <td>Menge</td>
                     <td><i *ngIf="item.menge !== bestaetigung.artikel[i].menge" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.menge}}</td>
-                    <td><i *ngIf="item.menge !== bestaetigung.artikel[i].menge" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].menge}}</td>
+                    <td>{{bestaetigung.artikel[i].menge}}</td>
                   </tr>
                   <tr *ngIf="!showOnlyDifferences || item.preis !== bestaetigung.artikel[i].preis" [class.unterschied]="item.preis !== bestaetigung.artikel[i].preis">
                     <td><i class="fa fa-money"></i></td>
                     <td>Preis</td>
                     <td><i *ngIf="item.preis !== bestaetigung.artikel[i].preis" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.preis | currency:'EUR'}}</td>
-                    <td><i *ngIf="item.preis !== bestaetigung.artikel[i].preis" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].preis | currency:'EUR'}}</td>
+                    <td>{{bestaetigung.artikel[i].preis | currency:'EUR'}}</td>
                   </tr>
                   <tr *ngIf="!showOnlyDifferences || item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" [class.unterschied]="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit">
                     <td><i class="fa fa-clock-o"></i></td>
                     <td>Lieferzeit</td>
                     <td><i *ngIf="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.lieferzeit}}</td>
-                    <td><i *ngIf="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].lieferzeit}}</td>
+                    <td>{{bestaetigung.artikel[i].lieferzeit}}</td>
                   </tr>
                   <tr *ngIf="!showOnlyDifferences || item.rabatt !== bestaetigung.artikel[i].rabatt" [class.unterschied]="item.rabatt !== bestaetigung.artikel[i].rabatt">
                     <td><i class="fa fa-percent"></i></td>
                     <td>Rabatt</td>
                     <td><i *ngIf="item.rabatt !== bestaetigung.artikel[i].rabatt" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.rabatt}}%</td>
-                    <td><i *ngIf="item.rabatt !== bestaetigung.artikel[i].rabatt" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].rabatt}}%</td>
+                    <td>{{bestaetigung.artikel[i].rabatt}}%</td>
                   </tr>
                 </tbody>
               </table>

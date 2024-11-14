@@ -266,3 +266,19 @@
 .fluent-button:active {
   background-color: #004578;
 }
+
+.warning-message {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 4px;
+  color: #856404;
+  display: flex;
+  align-items: center;
+}
+
+.warning-message-inline {
+  margin-left: 10px;
+  color: #856404;
+}
