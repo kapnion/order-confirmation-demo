@@ -48,7 +48,10 @@ export class OrderComparisonComponent implements OnInit {
       { id: 'ART-4', name: 'Produkt D', menge: 4, preis: 200, lieferzeit: '2-4 Tage', rabatt: 10 },
       { id: 'ART-5', name: 'Produkt E', menge: 1, preis: 300, lieferzeit: '3-5 Tage', rabatt: 0 },
       { id: 'ART-6', name: 'Produkt F', menge: 2, preis: 150, lieferzeit: '1-2 Tage', rabatt: 5 },
-      { id: 'ART-7', name: 'Produkt G', menge: 1, preis: 400, lieferzeit: '2-4 Tage', rabatt: 10 }
+      { id: 'ART-7', name: 'Produkt G', menge: 1, preis: 400, lieferzeit: '2-4 Tage', rabatt: 10 },
+      { id: 'ART-8', name: 'Produkt H', menge: 5, preis: 250, lieferzeit: '4-6 Tage', rabatt: 0 },
+      { id: 'ART-9', name: 'Produkt I', menge: 3, preis: 350, lieferzeit: '3-5 Tage', rabatt: 5 },
+      { id: 'ART-10', name: 'Produkt J', menge: 2, preis: 450, lieferzeit: '2-4 Tage', rabatt: 10 }
     ]
   };
 
@@ -68,7 +71,10 @@ export class OrderComparisonComponent implements OnInit {
       { id: 'ART-4', name: 'Produkt D', menge: 4, preis: 210, lieferzeit: '2-4 Tage', rabatt: 10 },
       { id: 'ART-5', name: 'Produkt E', menge: 1, preis: 300, lieferzeit: '3-5 Tage', rabatt: 0 },
       { id: 'ART-6', name: 'Produkt F', menge: 2, preis: 160, lieferzeit: '1-2 Tage', rabatt: 5 },
-      { id: 'ART-7', name: 'Produkt G', menge: 1, preis: 400, lieferzeit: '2-4 Tage', rabatt: 10 }
+      { id: 'ART-7', name: 'Produkt G', menge: 1, preis: 400, lieferzeit: '2-4 Tage', rabatt: 10 },
+      { id: 'ART-8', name: 'Produkt H', menge: 5, preis: 260, lieferzeit: '4-6 Tage', rabatt: 0 },
+      { id: 'ART-9', name: 'Produkt I', menge: 3, preis: 360, lieferzeit: '3-5 Tage', rabatt: 5 },
+      { id: 'ART-10', name: 'Produkt J', menge: 2, preis: 460, lieferzeit: '2-4 Tage', rabatt: 10 }
     ]
   };
 
