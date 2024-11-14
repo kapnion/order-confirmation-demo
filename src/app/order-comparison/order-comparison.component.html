@@ -13,14 +13,6 @@
         <i class="fa fa-envelope"></i>
         <span class="tab-title">Nachricht an Lieferanten</span>
       </div>
-      <div class="ribbon-tab orange">
-        <i class="fa fa-print"></i>
-        <span class="tab-title">Drucken</span>
-      </div>
-      <div class="ribbon-tab purple">
-        <i class="fa fa-save"></i>
-        <span class="tab-title">Speichern</span>
-      </div>
       <div class="ribbon-tab teal" (click)="toggleView()">
         <i class="fa fa-eye"></i>
         <span class="tab-title">Dokumentenansicht</span>
@@ -31,7 +23,7 @@
       </div>
       <div class="ribbon-tab" (click)="toggleShowDifferences()">
         <i class="fa fa-filter"></i>
-        <span class="tab-title">{{ showOnlyDifferences ? 'Alles anzeigen' : 'Nur Unterschiede anzeigen' }}</span>
+        <span class="tab-title">{{ showOnlyDifferences ? 'Alles anzeigen' : 'Nur Abweichungen anzeigen' }}</span>
       </div>
     </div>
   </div>
@@ -93,51 +85,56 @@
       </div>
       <div class="artikel-vergleich">
         <h3>Positionsdaten</h3>
-        <div *ngFor="let item of bestellung.artikel; let i = index" class="artikel-item" [class.unterschied]="hatUnterschiede(i)" [class.marked]="!expandedItems[i] && hatUnterschiede(i)">
-          <div class="artikel-header" (click)="toggleDetails(i)">
-            <i class="fa" [class.fa-chevron-right]="!expandedItems[i]" [class.fa-chevron-down]="expandedItems[i]"></i>
-            <i *ngIf="!expandedItems[i] && hatUnterschiede(i)" class="fa fa-exclamation-circle" style="color: red; margin-right: 5px;"></i>
-            <span>{{item.name}}</span>
+        <ng-container *ngFor="let item of bestellung.artikel; let i = index">
+          <div *ngIf="!showOnlyDifferences || hatUnterschiede(i)"
+               class="artikel-item"
+               [class.unterschied]="hatUnterschiede(i)"
+               [class.marked]="!expandedItems[i] && hatUnterschiede(i)">
+            <div class="artikel-header" (click)="toggleDetails(i)">
+              <i class="fa" [class.fa-chevron-right]="!expandedItems[i]" [class.fa-chevron-down]="expandedItems[i]"></i>
+              <i *ngIf="!expandedItems[i] && hatUnterschiede(i)" class="fa fa-exclamation-circle" style="color: red; margin-right: 5px;"></i>
+              <span>{{item.name}}</span>
+            </div>
+            <div *ngIf="expandedItems[i]" class="artikel-details">
+              <table class="artikel-tabelle">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Details</th>
+                    <th>Bestellung</th>
+                    <th>Auftragsbestätigung</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngIf="!showOnlyDifferences || item.menge !== bestaetigung.artikel[i].menge" [class.unterschied]="item.menge !== bestaetigung.artikel[i].menge">
+                    <td><i class="fa fa-cube"></i></td>
+                    <td>Menge</td>
+                    <td><i *ngIf="item.menge !== bestaetigung.artikel[i].menge" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.menge}}</td>
+                    <td><i *ngIf="item.menge !== bestaetigung.artikel[i].menge" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].menge}}</td>
+                  </tr>
+                  <tr *ngIf="!showOnlyDifferences || item.preis !== bestaetigung.artikel[i].preis" [class.unterschied]="item.preis !== bestaetigung.artikel[i].preis">
+                    <td><i class="fa fa-money"></i></td>
+                    <td>Preis</td>
+                    <td><i *ngIf="item.preis !== bestaetigung.artikel[i].preis" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.preis | currency:'EUR'}}</td>
+                    <td><i *ngIf="item.preis !== bestaetigung.artikel[i].preis" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].preis | currency:'EUR'}}</td>
+                  </tr>
+                  <tr *ngIf="!showOnlyDifferences || item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" [class.unterschied]="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit">
+                    <td><i class="fa fa-clock-o"></i></td>
+                    <td>Lieferzeit</td>
+                    <td><i *ngIf="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.lieferzeit}}</td>
+                    <td><i *ngIf="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].lieferzeit}}</td>
+                  </tr>
+                  <tr *ngIf="!showOnlyDifferences || item.rabatt !== bestaetigung.artikel[i].rabatt" [class.unterschied]="item.rabatt !== bestaetigung.artikel[i].rabatt">
+                    <td><i class="fa fa-percent"></i></td>
+                    <td>Rabatt</td>
+                    <td><i *ngIf="item.rabatt !== bestaetigung.artikel[i].rabatt" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.rabatt}}%</td>
+                    <td><i *ngIf="item.rabatt !== bestaetigung.artikel[i].rabatt" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].rabatt}}%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div *ngIf="expandedItems[i]" class="artikel-details">
-            <table class="artikel-tabelle">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Details</th>
-                  <th>Bestellung</th>
-                  <th>Auftragsbestätigung</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngIf="!showOnlyDifferences || item.menge !== bestaetigung.artikel[i].menge" [class.unterschied]="item.menge !== bestaetigung.artikel[i].menge">
-                  <td><i class="fa fa-cube"></i></td>
-                  <td>Menge</td>
-                  <td><i *ngIf="item.menge !== bestaetigung.artikel[i].menge" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.menge}}</td>
-                  <td><i *ngIf="item.menge !== bestaetigung.artikel[i].menge" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].menge}}</td>
-                </tr>
-                <tr *ngIf="!showOnlyDifferences || item.preis !== bestaetigung.artikel[i].preis" [class.unterschied]="item.preis !== bestaetigung.artikel[i].preis">
-                  <td><i class="fa fa-money"></i></td>
-                  <td>Preis</td>
-                  <td><i *ngIf="item.preis !== bestaetigung.artikel[i].preis" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.preis | currency:'EUR'}}</td>
-                  <td><i *ngIf="item.preis !== bestaetigung.artikel[i].preis" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].preis | currency:'EUR'}}</td>
-                </tr>
-                <tr *ngIf="!showOnlyDifferences || item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" [class.unterschied]="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit">
-                  <td><i class="fa fa-clock-o"></i></td>
-                  <td>Lieferzeit</td>
-                  <td><i *ngIf="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.lieferzeit}}</td>
-                  <td><i *ngIf="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].lieferzeit}}</td>
-                </tr>
-                <tr *ngIf="!showOnlyDifferences || item.rabatt !== bestaetigung.artikel[i].rabatt" [class.unterschied]="item.rabatt !== bestaetigung.artikel[i].rabatt">
-                  <td><i class="fa fa-percent"></i></td>
-                  <td>Rabatt</td>
-                  <td><i *ngIf="item.rabatt !== bestaetigung.artikel[i].rabatt" class="fa fa-exclamation-circle" style="color: red;"></i> {{item.rabatt}}%</td>
-                  <td><i *ngIf="item.rabatt !== bestaetigung.artikel[i].rabatt" class="fa fa-exclamation-circle" style="color: red;"></i> {{bestaetigung.artikel[i].rabatt}}%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        </ng-container>
       </div>
     </div>
     <div *ngIf="showDocumentView" class="side-content">
