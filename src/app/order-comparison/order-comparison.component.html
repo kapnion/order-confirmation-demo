@@ -9,7 +9,7 @@
         <i class="fa fa-times"></i>
         <span class="tab-title">Ablehnen</span>
       </div>
-      <div class="ribbon-tab blue">
+      <div class="ribbon-tab blue" (click)="toggleMessageDialog()">
         <i class="fa fa-envelope"></i>
         <span class="tab-title">Nachricht an Lieferanten</span>
       </div>
@@ -21,15 +21,11 @@
         <i class="fa fa-save"></i>
         <span class="tab-title">Speichern</span>
       </div>
-      <div class="ribbon-tab" (click)="toggleView()">
+      <div class="ribbon-tab teal" (click)="toggleView()">
         <i class="fa fa-eye"></i>
         <span class="tab-title">Dokumentenansicht</span>
       </div>
-      <div class="ribbon-tab" (click)="toggleMessageDialog()">
-        <i class="fa fa-envelope"></i>
-        <span class="tab-title">Nachricht an Lieferanten</span>
-      </div>
-      <div class="ribbon-tab">
+      <div class="ribbon-tab gray">
         <i class="fa fa-history"></i>
         <span class="tab-title">Verlauf</span>
       </div>
@@ -37,7 +33,7 @@
   </div>
 
   <div class="content">
-    <div class="main-content" [class.full-width]="!showDocumentView && !showMessageDialog">
+    <div class="main-content" [class.full-width]="!showDocumentView">
       <div class="vergleich-container">
         <table class="vergleich-tabelle">
           <thead>
@@ -140,16 +136,24 @@
         </div>
       </div>
     </div>
-    <div *ngIf="showDocumentView || showMessageDialog" class="side-content">
-      <div *ngIf="showDocumentView" class="document-view">
+    <div *ngIf="showDocumentView" class="side-content">
+      <div class="document-view">
         <h3>Dokumentansicht</h3>
         <p>Hier wird das Dokument angezeigt.</p>
       </div>
-      <div *ngIf="showMessageDialog" class="message-dialog">
-        <h3>Nachricht an Lieferanten</h3>
-        <textarea [(ngModel)]="messageText" placeholder="Ihre Nachricht..."></textarea>
-        <button (click)="sendMessage()">Senden</button>
-        <button (click)="toggleMessageDialog()">Schließen</button>
+    </div>
+  </div>
+  <div *ngIf="showMessageDialog" class="overlay">
+    <div class="message-dialog">
+      <h3>Nachricht an Lieferanten</h3>
+      <textarea [(ngModel)]="messageText" placeholder="Ihre Nachricht..."></textarea>
+      <div class="button-group">
+        <button class="fluent-button" (click)="sendMessage()">
+          <i class="fa fa-paper-plane"></i> Senden
+        </button>
+        <button class="fluent-button" (click)="toggleMessageDialog()">
+          <i class="fa fa-times"></i> Schließen
+        </button>
       </div>
     </div>
   </div>
