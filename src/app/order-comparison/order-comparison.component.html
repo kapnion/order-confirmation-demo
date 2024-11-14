@@ -164,4 +164,60 @@
       </div>
     </div>
   </div>
+  <div *ngIf="showConfirmDialog" class="overlay">
+    <div class="message-dialog">
+      <h3>Bestellung bestätigen</h3>
+      <p>Bestellung und Bestellbestätigung stimmen überein.</p>
+      <div class="button-group">
+        <button class="fluent-button" (click)="closeConfirmDialog()">
+          <i class="fa fa-check"></i> OK
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showRejectDialog" class="overlay">
+    <div class="message-dialog">
+      <h3>Bestellung ablehnen</h3>
+      <p>Bestellung und Bestellbestätigung stimmen nicht überein.</p>
+      <div class="button-group">
+        <button class="fluent-button" (click)="closeRejectDialog()">
+          <i class="fa fa-check"></i> OK
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showHistoryDialog" class="overlay">
+    <div class="message-dialog">
+      <h3>Verlauf</h3>
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Aktion</th>
+            <th>Datum</th>
+            <th>Uhrzeit</th>
+            <th>Benutzer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bestellbestätigung empfangen</td>
+            <td>2023-05-16</td>
+            <td>10:30</td>
+            <td>System</td>
+          </tr>
+          <tr>
+            <td>Geprüft</td>
+            <td>2023-05-17</td>
+            <td>14:45</td>
+            <td>Max Mustermann</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button-group">
+        <button class="fluent-button" (click)="closeHistoryDialog()">
+          <i class="fa fa-check"></i> OK
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

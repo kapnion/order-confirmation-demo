@@ -76,6 +76,9 @@ export class OrderComparisonComponent implements OnInit {
   showMessageDialog = false;
   messageText = '';
   showOnlyDifferences = false;
+  showConfirmDialog = false;
+  showRejectDialog = false;
+  showHistoryDialog = false;
 
   ngOnInit() {
     this.expandedItems = new Array(this.bestellung.artikel.length).fill(false);
@@ -134,5 +137,29 @@ export class OrderComparisonComponent implements OnInit {
 
   toggleShowDifferences() {
     this.showOnlyDifferences = !this.showOnlyDifferences;
+  }
+
+  toggleConfirmDialog() {
+    this.showConfirmDialog = !this.showConfirmDialog;
+  }
+
+  toggleRejectDialog() {
+    this.showRejectDialog = !this.showRejectDialog;
+  }
+
+  toggleHistoryDialog() {
+    this.showHistoryDialog = !this.showHistoryDialog;
+  }
+
+  closeConfirmDialog() {
+    this.showConfirmDialog = false;
+  }
+
+  closeRejectDialog() {
+    this.showRejectDialog = false;
+  }
+
+  closeHistoryDialog() {
+    this.showHistoryDialog = false;
   }
 }

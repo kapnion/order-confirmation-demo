@@ -282,3 +282,20 @@
   margin-left: 10px;
   color: #856404;
 }
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.history-table th, .history-table td {
+  border: 1px solid #e1e1e1;
+  padding: 8px;
+  text-align: left;
+}
+
+.history-table th {
+  background-color: #f3f2f1;
+  font-weight: 600;
+}
