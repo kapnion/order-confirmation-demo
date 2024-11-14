@@ -42,7 +42,8 @@ export class OrderComparisonComponent implements OnInit {
     artikel: [
       { id: 'ART-1', name: 'Produkt A', menge: 2, preis: 500, lieferzeit: '3-5 Tage', rabatt: 0 },
       { id: 'ART-2', name: 'Produkt B', menge: 1, preis: 500, lieferzeit: '1-2 Tage', rabatt: 5 },
-      { id: 'ART-3', name: 'Produkt C', menge: 3, preis: 100, lieferzeit: '5-7 Tage', rabatt: 0 }
+      { id: 'ART-3', name: 'Produkt C', menge: 3, preis: 100, lieferzeit: '5-7 Tage', rabatt: 0 },
+      { id: 'ART-4', name: 'Produkt D', menge: 4, preis: 200, lieferzeit: '2-4 Tage', rabatt: 10 }
     ]
   };
 
@@ -58,7 +59,8 @@ export class OrderComparisonComponent implements OnInit {
     artikel: [
       { id: 'ART-1', name: 'Produkt A', menge: 2, preis: 550, lieferzeit: '3-5 Tage', rabatt: 0 },
       { id: 'ART-2', name: 'Produkt B', menge: 1, preis: 500, lieferzeit: '2-3 Tage', rabatt: 5 },
-      { id: 'ART-3', name: 'Produkt C', menge: 3, preis: 100, lieferzeit: '5-7 Tage', rabatt: 2 }
+      { id: 'ART-3', name: 'Produkt C', menge: 3, preis: 100, lieferzeit: '5-7 Tage', rabatt: 2 },
+      { id: 'ART-4', name: 'Produkt D', menge: 4, preis: 210, lieferzeit: '2-4 Tage', rabatt: 10 }
     ]
   };
 
