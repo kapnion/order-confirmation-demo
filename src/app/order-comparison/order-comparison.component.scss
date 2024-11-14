@@ -5,7 +5,7 @@
   background-color: #f3f2f1;
 }
 .ribbon-bar {
-  background-color: transparent;
+  background-color: #ffffff;
   color: #0078d4;
   padding: 10px 0;
   display: flex;
@@ -13,10 +13,11 @@
   justify-content: flex-start; /* Change to flex-start */
   box-shadow: none;
   width: 100%;
-  border-bottom: 1px solid #e1e1e1;
+  border: 1px solid #e1e1e1;
   position: relative;
   left: 0;
   right: 0;
+  border-radius: 5px;
 }
 .ribbon-tabs {
   display: flex;
@@ -30,8 +31,23 @@
   color: #0078d4;
   transition: background-color 0.3s;
 }
+.ribbon-tab.green i {
+  color: green;
+}
+.ribbon-tab.red i {
+  color: red;
+}
+.ribbon-tab.blue i {
+  color: blue;
+}
+.ribbon-tab.orange i {
+  color: orange;
+}
+.ribbon-tab.purple i {
+  color: purple;
+}
 .ribbon-tab.active {
-  background-color: #ffffff;
+  background-color: #f3f2f1;
   color: #0078d4;
   border-radius: 5px;
 }
@@ -41,6 +57,7 @@
 .tab-title {
   font-size: 13px;
   font-weight: 600;
+  margin-left: 5px; /* Increase space between icon and text */
 }
 .ribbon-content {
   display: flex;
@@ -79,7 +96,22 @@
 }
 .ribbon-button i {
   font-size: 20px;
-  margin-bottom: 2px;
+  margin-bottom: 5px; /* Increase space between icon and text */
+}
+.ribbon-button.green i {
+  color: green;
+}
+.ribbon-button.red i {
+  color: red;
+}
+.ribbon-button.blue i {
+  color: blue;
+}
+.ribbon-button.orange i {
+  color: orange;
+}
+.ribbon-button.purple i {
+  color: purple;
 }
 .content {
   padding: 20px;
