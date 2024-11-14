@@ -1,5 +1,6 @@
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // Add this import
 
 interface OrderItem {
   id: string;
@@ -27,7 +28,7 @@ interface Order {
   templateUrl: './order-comparison.component.html',
   styleUrls: ['./order-comparison.component.scss'],
   standalone: true,
-  imports: [CurrencyPipe, NgFor, NgIf]
+  imports: [CurrencyPipe, NgFor, NgIf, FormsModule] // Add FormsModule here
 })
 export class OrderComparisonComponent implements OnInit {
   bestellung: Order = {
@@ -65,6 +66,9 @@ export class OrderComparisonComponent implements OnInit {
   };
 
   expandedItems: boolean[] = [];
+  showDocumentView = false;
+  showMessageDialog = false;
+  messageText = '';
 
   ngOnInit() {
     this.expandedItems = new Array(this.bestellung.artikel.length).fill(false);
@@ -92,5 +96,19 @@ export class OrderComparisonComponent implements OnInit {
 
   toggleDetails(index: number) {
     this.expandedItems[index] = !this.expandedItems[index];
+  }
+
+  toggleView() {
+    this.showDocumentView = !this.showDocumentView;
+  }
+
+  toggleMessageDialog() {
+    this.showMessageDialog = !this.showMessageDialog;
+  }
+
+  sendMessage() {
+    console.log('Nachricht gesendet:', this.messageText);
+    this.messageText = '';
+    this.toggleMessageDialog();
   }
 }
