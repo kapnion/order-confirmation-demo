@@ -1,4 +1,17 @@
-# OrderConfirmationDemo
+# Order Confirmation Demo
+
+## Project Description
+
+This project is a simple demonstration of an order confirmation comparison tool. It showcases how orders and their corresponding confirmations can be visually compared side by side.
+
+### Key Features:
+
+- Side-by-side display of order and confirmation details
+- Highlighting of discrepancies
+- Expandable line items for detailed comparison
+- Microsoft Office-inspired user interface
+
+Please note: This is a concept demonstration only and is not intended for production use. It serves as a starting point for discussions on improving order verification processes.# OrderConfirmationDemo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
