@@ -1,6 +1,7 @@
 import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // Add this import
+import { DomSanitizer } from '@angular/platform-browser';
 
 interface OrderItem {
   id: string;
@@ -79,7 +80,8 @@ export class OrderComparisonComponent implements OnInit {
   showConfirmDialog = false;
   showRejectDialog = false;
   showHistoryDialog = false;
-
+  sanitizer = inject(DomSanitizer);
+  pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('dummy.pdf');
   ngOnInit() {
     this.expandedItems = new Array(this.bestellung.artikel.length).fill(false);
   }

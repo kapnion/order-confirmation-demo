@@ -1,11 +1,11 @@
 <div class="order-vergleich">
   <div class="ribbon-bar">
     <div class="ribbon-tabs">
-      <div class="ribbon-tab green">
+      <div class="ribbon-tab green" (click)="toggleConfirmDialog()">
         <i class="fa fa-check"></i>
         <span class="tab-title">Bestätigen</span>
       </div>
-      <div class="ribbon-tab red">
+      <div class="ribbon-tab red" (click)="toggleRejectDialog()">
         <i class="fa fa-times"></i>
         <span class="tab-title">Ablehnen</span>
       </div>
@@ -17,7 +17,7 @@
         <i class="fa fa-eye"></i>
         <span class="tab-title">Dokumentenansicht</span>
       </div>
-      <div class="ribbon-tab gray">
+      <div class="ribbon-tab gray" (click)="toggleHistoryDialog()">
         <i class="fa fa-history"></i>
         <span class="tab-title">Verlauf</span>
       </div>
@@ -146,7 +146,7 @@
     <div *ngIf="showDocumentView" class="side-content">
       <div class="document-view">
         <h3>Dokumentansicht</h3>
-        <p>Hier wird das Dokument angezeigt.</p>
+        <iframe [src]="pdfUrl" width="100%" height="700px"></iframe>
       </div>
     </div>
   </div>
