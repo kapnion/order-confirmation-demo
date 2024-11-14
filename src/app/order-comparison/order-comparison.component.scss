@@ -1,61 +1,127 @@
-
-    .order-vergleich {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .ribbon-bar {
-      background-color: #f3f2f1;
-      padding: 8px;
-      display: flex;
-      gap: 8px;
-    }
-    .ribbon-button {
-      background-color: transparent;
-      border: none;
-      padding: 8px 16px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 12px;
-    }
-    .ribbon-button:hover {
-      background-color: #e1dfdd;
-    }
-    .ribbon-button i {
-      font-size: 20px;
-      margin-bottom: 4px;
-    }
-    .vergleich-container {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    .order-details {
-      width: 48%;
-    }
-    .artikel-vergleich {
-      margin-top: 20px;
-    }
-    .artikel-item {
-      border: 1px solid #e1dfdd;
-      margin-bottom: 10px;
-    }
-    .artikel-item summary {
-      padding: 10px;
-      cursor: pointer;
-      background-color: #f3f2f1;
-    }
-    .artikel-item summary.unterschied {
-      background-color: #fff4ce;
-    }
-    .artikel-details {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
-    }
-    .unterschied {
-      background-color: #fff4ce;
-    }
-
+.order-vergleich {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f3f2f1;
+}
+.ribbon-bar {
+  background-color: transparent;
+  color: #0078d4;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Change to flex-start */
+  box-shadow: none;
+  width: 100%;
+  border-bottom: 1px solid #e1e1e1;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+.ribbon-tabs {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin-right: auto; /* Ensure tabs are on the left */
+}
+.ribbon-tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #0078d4;
+  transition: background-color 0.3s;
+}
+.ribbon-tab.active {
+  background-color: #ffffff;
+  color: #0078d4;
+  border-radius: 5px;
+}
+.ribbon-tab:hover {
+  background-color: rgba(0, 120, 212, 0.1);
+}
+.tab-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+.ribbon-content {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: auto; /* Ensure content is on the right */
+}
+.ribbon-group {
+  display: flex;
+  margin-right: 20px;
+  padding: 5px;
+  border-right: 1px solid #e1e1e1;
+}
+.ribbon-group:last-child {
+  border-right: none;
+}
+.ribbon-button {
+  background-color: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+  color: #0078d4;
+  transition: background-color 0.3s;
+}
+.ribbon-button.large {
+  padding: 5px 15px;
+}
+.ribbon-button:hover {
+  background-color: rgba(0, 120, 212, 0.1);
+}
+.ribbon-button i {
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+.content {
+  padding: 20px;
+  background-color: #ffffff;
+}
+.vergleich-tabelle, .artikel-tabelle {
+  width: 100%;
+  border-collapse: collapse;
+}
+.vergleich-tabelle th, .vergleich-tabelle td,
+.artikel-tabelle th, .artikel-tabelle td {
+  border: 1px solid #e1dfdd;
+  padding: 8px;
+  text-align: left;
+}
+.vergleich-tabelle th, .artikel-tabelle th {
+  background-color: #f3f2f1;
+  font-weight: 600;
+}
+.artikel-vergleich {
+  margin-top: 20px;
+}
+.artikel-item {
+  border: 1px solid #e1dfdd;
+  margin-bottom: 10px;
+}
+.artikel-header {
+  padding: 10px;
+  background-color: #f3f2f1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.artikel-header i {
+  margin-right: 10px;
+}
+.artikel-details {
+  padding: 10px;
+}
+.unterschied {
+  background-color: #fff4ce;
+}
+.artikel-tabelle i {
+  font-size: 16px;
+}

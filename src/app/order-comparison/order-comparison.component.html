@@ -1,45 +1,138 @@
 <div class="order-vergleich">
   <div class="ribbon-bar">
-    <button class="ribbon-button"><i class="ms-Icon ms-Icon--Accept"></i>Bestätigen</button>
-    <button class="ribbon-button"><i class="ms-Icon ms-Icon--Cancel"></i>Ablehnen</button>
-    <button class="ribbon-button"><i class="ms-Icon ms-Icon--Mail"></i>Nachricht an Lieferant</button>
+    <div class="ribbon-tabs">
+      <div class="ribbon-tab">
+        <i class="fa fa-check"></i>
+        <span class="tab-title">Bestätigen</span>
+      </div>
+      <div class="ribbon-tab">
+        <i class="fa fa-times"></i>
+        <span class="tab-title">Ablehnen</span>
+      </div>
+      <div class="ribbon-tab">
+        <i class="fa fa-envelope"></i>
+        <span class="tab-title">Nachricht</span>
+      </div>
+      <div class="ribbon-tab">
+        <i class="fa fa-print"></i>
+        <span class="tab-title">Drucken</span>
+      </div>
+      <div class="ribbon-tab">
+        <i class="fa fa-save"></i>
+        <span class="tab-title">Speichern</span>
+      </div>
+      <div class="ribbon-tab">
+        <i class="fa fa-eye"></i>
+        <span class="tab-title">Ansicht</span>
+      </div>
+      <div class="ribbon-tab">
+        <i class="fa fa-history"></i>
+        <span class="tab-title">Verlauf</span>
+      </div>
+    </div>
   </div>
 
-  <div class="vergleich-container">
-    <div class="order-details">
-      <h2>Bestellung</h2>
-      <p>Bestellnummer: {{bestellung.id}}</p>
-      <p>Datum: {{bestellung.datum}}</p>
-      <p>Kunde: {{bestellung.kundenName}}</p>
-      <p>Gesamtbetrag: {{bestellung.gesamtbetrag | currency:'EUR'}}</p>
+  <div class="content">
+    <div class="vergleich-container">
+      <table class="vergleich-tabelle">
+        <thead>
+          <tr>
+            <th>Details</th>
+            <th>Bestellung</th>
+            <th>Auftragsbestätigung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr [class.unterschied]="bestellung.id !== bestaetigung.id">
+            <td>Bestellnummer</td>
+            <td>{{bestellung.id}}</td>
+            <td>{{bestaetigung.id}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.datum !== bestaetigung.datum">
+            <td>Datum</td>
+            <td>{{bestellung.datum}}</td>
+            <td>{{bestaetigung.datum}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.kundenName !== bestaetigung.kundenName">
+            <td>Kunde</td>
+            <td>{{bestellung.kundenName}}</td>
+            <td>{{bestaetigung.kundenName}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.kundenNummer !== bestaetigung.kundenNummer">
+            <td>Kundennummer</td>
+            <td>{{bestellung.kundenNummer}}</td>
+            <td>{{bestaetigung.kundenNummer}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.lieferadresse !== bestaetigung.lieferadresse">
+            <td>Lieferadresse</td>
+            <td>{{bestellung.lieferadresse}}</td>
+            <td>{{bestaetigung.lieferadresse}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.zahlungsmethode !== bestaetigung.zahlungsmethode">
+            <td>Zahlungsmethode</td>
+            <td>{{bestellung.zahlungsmethode}}</td>
+            <td>{{bestaetigung.zahlungsmethode}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.gesamtbetrag !== bestaetigung.gesamtbetrag">
+            <td>Gesamtbetrag</td>
+            <td>{{bestellung.gesamtbetrag | currency:'EUR'}}</td>
+            <td>{{bestaetigung.gesamtbetrag | currency:'EUR'}}</td>
+          </tr>
+          <tr [class.unterschied]="bestellung.mwst !== bestaetigung.mwst">
+            <td>MwSt.</td>
+            <td>{{bestellung.mwst | currency:'EUR'}}</td>
+            <td>{{bestaetigung.mwst | currency:'EUR'}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="order-details">
-      <h2>Auftragsbestätigung</h2>
-      <p>Bestellnummer: {{bestaetigung.id}}</p>
-      <p>Datum: {{bestaetigung.datum}}</p>
-      <p>Kunde: {{bestaetigung.kundenName}}</p>
-      <p>Gesamtbetrag: {{bestaetigung.gesamtbetrag | currency:'EUR'}}</p>
-    </div>
-  </div>
 
-  <div class="artikel-vergleich">
-    <h3>Artikelvergleich</h3>
-    <div *ngFor="let item of bestellung.artikel; let i = index" class="artikel-item">
-      <details>
-        <summary [class.unterschied]="hatUnterschiede(i)">
-          {{item.name}}
-        </summary>
-        <div class="artikel-details">
-          <div class="order-details">
-            <p>Menge: {{item.menge}}</p>
-            <p>Preis: {{item.preis | currency:'EUR'}}</p>
-          </div>
-          <div class="order-details">
-            <p>Menge: {{bestaetigung.artikel[i].menge}}</p>
-            <p>Preis: {{bestaetigung.artikel[i].preis | currency:'EUR'}}</p>
-          </div>
+    <div class="artikel-vergleich">
+      <h3>Artikelvergleich</h3>
+      <div *ngFor="let item of bestellung.artikel; let i = index" class="artikel-item" [class.unterschied]="hatUnterschiede(i)">
+        <div class="artikel-header" (click)="toggleDetails(i)">
+          <i class="fa" [class.fa-chevron-right]="!expandedItems[i]" [class.fa-chevron-down]="expandedItems[i]"></i>
+          <span>{{item.name}}</span>
         </div>
-      </details>
+        <div *ngIf="expandedItems[i]" class="artikel-details">
+          <table class="artikel-tabelle">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Details</th>
+                <th>Bestellung</th>
+                <th>Auftragsbestätigung</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr [class.unterschied]="item.menge !== bestaetigung.artikel[i].menge">
+                <td><i class="fa fa-cube"></i></td>
+                <td>Menge</td>
+                <td>{{item.menge}}</td>
+                <td>{{bestaetigung.artikel[i].menge}}</td>
+              </tr>
+              <tr [class.unterschied]="item.preis !== bestaetigung.artikel[i].preis">
+                <td><i class="fa fa-money"></i></td>
+                <td>Preis</td>
+                <td>{{item.preis | currency:'EUR'}}</td>
+                <td>{{bestaetigung.artikel[i].preis | currency:'EUR'}}</td>
+              </tr>
+              <tr [class.unterschied]="item.lieferzeit !== bestaetigung.artikel[i].lieferzeit">
+                <td><i class="fa fa-clock-o"></i></td>
+                <td>Lieferzeit</td>
+                <td>{{item.lieferzeit}}</td>
+                <td>{{bestaetigung.artikel[i].lieferzeit}}</td>
+              </tr>
+              <tr [class.unterschied]="item.rabatt !== bestaetigung.artikel[i].rabatt">
+                <td><i class="fa fa-percent"></i></td>
+                <td>Rabatt</td>
+                <td>{{item.rabatt}}%</td>
+                <td>{{bestaetigung.artikel[i].rabatt}}%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
