@@ -69,6 +69,7 @@ export class OrderComparisonComponent implements OnInit {
   showDocumentView = false;
   showMessageDialog = false;
   messageText = '';
+  showOnlyDifferences = false;
 
   ngOnInit() {
     this.expandedItems = new Array(this.bestellung.artikel.length).fill(false);
@@ -110,5 +111,9 @@ export class OrderComparisonComponent implements OnInit {
     console.log('Nachricht gesendet:', this.messageText);
     this.messageText = '';
     this.toggleMessageDialog();
+  }
+
+  toggleShowDifferences() {
+    this.showOnlyDifferences = !this.showOnlyDifferences;
   }
 }
