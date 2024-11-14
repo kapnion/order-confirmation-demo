@@ -1,0 +1,61 @@
+
+    .order-vergleich {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .ribbon-bar {
+      background-color: #f3f2f1;
+      padding: 8px;
+      display: flex;
+      gap: 8px;
+    }
+    .ribbon-button {
+      background-color: transparent;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+    }
+    .ribbon-button:hover {
+      background-color: #e1dfdd;
+    }
+    .ribbon-button i {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .vergleich-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .order-details {
+      width: 48%;
+    }
+    .artikel-vergleich {
+      margin-top: 20px;
+    }
+    .artikel-item {
+      border: 1px solid #e1dfdd;
+      margin-bottom: 10px;
+    }
+    .artikel-item summary {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #f3f2f1;
+    }
+    .artikel-item summary.unterschied {
+      background-color: #fff4ce;
+    }
+    .artikel-details {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+    .unterschied {
+      background-color: #fff4ce;
+    }
+

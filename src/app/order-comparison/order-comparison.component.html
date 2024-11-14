@@ -1,0 +1,45 @@
+<div class="order-vergleich">
+  <div class="ribbon-bar">
+    <button class="ribbon-button"><i class="ms-Icon ms-Icon--Accept"></i>Bestätigen</button>
+    <button class="ribbon-button"><i class="ms-Icon ms-Icon--Cancel"></i>Ablehnen</button>
+    <button class="ribbon-button"><i class="ms-Icon ms-Icon--Mail"></i>Nachricht an Lieferant</button>
+  </div>
+
+  <div class="vergleich-container">
+    <div class="order-details">
+      <h2>Bestellung</h2>
+      <p>Bestellnummer: {{bestellung.id}}</p>
+      <p>Datum: {{bestellung.datum}}</p>
+      <p>Kunde: {{bestellung.kundenName}}</p>
+      <p>Gesamtbetrag: {{bestellung.gesamtbetrag | currency:'EUR'}}</p>
+    </div>
+    <div class="order-details">
+      <h2>Auftragsbestätigung</h2>
+      <p>Bestellnummer: {{bestaetigung.id}}</p>
+      <p>Datum: {{bestaetigung.datum}}</p>
+      <p>Kunde: {{bestaetigung.kundenName}}</p>
+      <p>Gesamtbetrag: {{bestaetigung.gesamtbetrag | currency:'EUR'}}</p>
+    </div>
+  </div>
+
+  <div class="artikel-vergleich">
+    <h3>Artikelvergleich</h3>
+    <div *ngFor="let item of bestellung.artikel; let i = index" class="artikel-item">
+      <details>
+        <summary [class.unterschied]="hatUnterschiede(i)">
+          {{item.name}}
+        </summary>
+        <div class="artikel-details">
+          <div class="order-details">
+            <p>Menge: {{item.menge}}</p>
+            <p>Preis: {{item.preis | currency:'EUR'}}</p>
+          </div>
+          <div class="order-details">
+            <p>Menge: {{bestaetigung.artikel[i].menge}}</p>
+            <p>Preis: {{bestaetigung.artikel[i].preis | currency:'EUR'}}</p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>
