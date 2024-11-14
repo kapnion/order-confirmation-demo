@@ -14,15 +14,15 @@
         <span class="tab-title">Nachricht an Lieferanten</span>
       </div>
       <div class="ribbon-tab teal" (click)="toggleView()">
-        <i class="fa fa-eye"></i>
-        <span class="tab-title">Dokumentenansicht</span>
+        <i class="fa" [class.fa-eye]="!showDocumentView" [class.fa-eye-slash]="showDocumentView"></i>
+        <span class="tab-title">{{ showDocumentView ? 'Dokumentenansicht schließen' : 'Dokumentenansicht öffnen' }}</span>
       </div>
       <div class="ribbon-tab gray" (click)="toggleHistoryDialog()">
         <i class="fa fa-history"></i>
         <span class="tab-title">Verlauf</span>
       </div>
       <div class="ribbon-tab" (click)="toggleShowDifferences()">
-        <i class="fa fa-filter"></i>
+        <i class="fa" [class.fa-filter]="!showOnlyDifferences" [class.fa-list]="showOnlyDifferences"></i>
         <span class="tab-title">{{ showOnlyDifferences ? 'Alles anzeigen' : 'Nur Abweichungen anzeigen' }}</span>
       </div>
     </div>
